@@ -1,0 +1,11 @@
+body {
+    background-color: #CCCCCC;
+}
+
+#canvasContainer {
+	text-align: center;
+}
+
+#svgCanvas {
+	width: auto;
+}

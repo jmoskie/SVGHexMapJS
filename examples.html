@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <title>SVGHexMapJS</title>
+    <script type="text/javascript" src="js/libs/svg.min.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/hex.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    <link type="text/css" rel="stylesheet" href="css/hex.css">
+</head>
+
+<body>
+<div id="canvasContainer">
+    <h2>SVGHexMapJS Examples</h2>
+    4x8
+	<div id="svgCanvas">
+	</div>
+
+    10x20
+    <div id="svgCanvas2">
+    </div>
+</div>
+
+<script>
+$( document ).ready(function() {
+    map = new Map('svgCanvas', 4, 8);
+    console.log(map);
+
+    map2 = new Map('svgCanvas2', 10, 20);
+    console.log(map2);
+});
+</script>
+
+</body>
