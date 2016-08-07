@@ -3,6 +3,7 @@
     <title>SVGHexMapJS</title>
     <script type="text/javascript" src="js/libs/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="js/libs/svg.min.js"></script>
+    <script type="text/javascript" src="js/libs/svg.draggable.min.js"></script>
     <script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/hex.js"></script>
     
@@ -13,11 +14,11 @@
 <body>
 <div id="canvasContainer">
     <h2>SVGHexMapJS Examples</h2>
-    4x8
+    4x8 Random
 	<div id="svgCanvas">
 	</div>
 
-    10x20
+    10x20 Symmetric Bound to 400x600
     <div id="svgCanvas2">
     </div>
 </div>
@@ -27,7 +28,7 @@ $( document ).ready(function() {
     map = new Map('svgCanvas', 4, 8);
     console.log(map);
 
-    map2 = new Map('svgCanvas2', 10, 20);
+    map2 = new Map('svgCanvas2', 10, 20, "symmetric", 400, 600);
     console.log(map2);
 });
 </script>
