@@ -140,9 +140,9 @@ Hex.prototype.getGroup = function(groupName) {
 
 // events
 Hex.prototype.hexGroupClick = function(event) {
-	this.get(0).toggleClass("selectedHex");
+	this.get(HEX_GROUPS["background"]).get(0).toggleClass("selectedHex");
 
-	if(this.get(0).hasClass("selectedHex")) {
+	if(this.get(HEX_GROUPS["background"]).get(0).hasClass("selectedHex")) {
 		// selected
 	} else {
 		// deselected
