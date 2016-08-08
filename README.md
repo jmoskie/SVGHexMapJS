@@ -15,5 +15,5 @@ Without this stuff I wouldn't have even been able to get started on this project
  - https://github.com/wout/svg.js
 
 ### Art
-- The amazing icons used in the tool are available *FO' FREE* from GamesIcons.
+- The amazing icons used in the tool are available **FO' FREE** from GamesIcons.
  - http://game-icons.net/
