@@ -66,9 +66,9 @@ function Hex (row, col, type, mapGroup) {
 	this.setType(type);
 
 	// TODO: Move this out of the loop...
-	this.hexGroup.on('click', this.hexGroupClick);
-	this.hexGroup.on('mousedown', this.mousedown);
-	this.hexGroup.on('mouseup', this.mouseup);
+	this.hexGroup.on("click", this.hexGroupClick);
+	this.hexGroup.on("mousedown", this.mousedown);
+	this.hexGroup.on("mouseup", this.mouseup);
 
 	this.hexGroup.mouseover(function() {
 		this.get(HEX_GROUP_FOREGROUND).get(0).addClass("hoveredHex");
@@ -111,6 +111,8 @@ Hex.prototype.setBackgroundImage = function(image="blank", opacity) {
 // ==================== event handlers ====================
 
 Hex.prototype.hexGroupClick = function(event) {
+	console.log("HEX CLICK: " + this.cx() + "," + this.cy());
+
 	this.get(HEX_GROUP_FOREGROUND).get(0).toggleClass("selectedHex");
 
 	if(this.get(HEX_GROUP_FOREGROUND).get(0).hasClass("selectedHex")) {

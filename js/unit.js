@@ -1,15 +1,16 @@
 UNIT_ICON_SIZE = 30;
 
-function Unit (name, image, hex, mapGroup) {
+function Unit (name, image, hex, map) {
 	this.name = name;
 	this.hex = hex;
 
-	this.mapGroup = mapGroup;
-	this.unitGroup = this.mapGroup.group().draggable();
+	this.map = map;
+	this.unitGroup = this.map.mapGroup.group().draggable();
 
 	this.setImage(image);
 
-	this.unitGroup.on('click', this.unitClick);
+	this.unitGroup.on("click", this.click.bind(this));
+	this.unitGroup.on("dragend", this.dragend.bind(this));
 }
 
 Unit.prototype.getCircle = function() {
@@ -55,23 +56,47 @@ Unit.prototype.moveTo = function(destinationHex) {
 	this.hex = destinationHex;
 
 	this.unitGroup.animate().dmove(dx, dy);
+
+	return this;
+}
+
+Unit.prototype.snapTo = function(destinationHex) {
+	dx = destinationHex.getPolygon().cx() - this.unitGroup.cx();
+	dy = destinationHex.getPolygon().cy() - this.unitGroup.cy();
+
+	this.hex = destinationHex;
+
+	this.unitGroup.dmove(dx, dy);
+
+	return this;
 }
 
 // ==================== event handlers ====================
 
-Unit.prototype.unitClick = function(event) {
-	console.log(event);
-	console.log(this.cx() + "," + this.cy());
+Unit.prototype.click = function(event) {
+	// console.log(event);
+	// console.log("UNIT CLICK: " + this.cx() + "," + this.cy());
 
 	// this.unitGroup.get(0).toggleClass("selectedHex");
 }
 
-Unit.prototype.dragmove = function(event) {
-	console.log(event);
-	console.log(this.cx() + "," + this.cy());
-}
+// (0*65)+32.5
 
-Unit.prototype.dragmove = function(event) {
-	console.log(event);
-	console.log(this.cx() + "," + this.cy());
+// this is how to tell if a unit is in a hexm given it's row/col... but we want to go backwards. Given x,y coords, what hex am I in?
+// map.hexMap[1][0].hexGroup.inside(map.units[0].unitGroup.cx(), map.units[0].unitGroup.cy()) 
+
+Unit.prototype.dragend = function(event) {
+	// console.log(event);
+	console.log(this);
+
+	// (col % 2 ? 32.5 : 0)
+
+	col = Math.floor(this.unitGroup.cx() / 56.25);
+	row = Math.floor((this.unitGroup.cy() - (col % 2 ? 32.5 : 0)) / 65);
+
+	destinationHex = this.map.hexMap[row][col];
+
+	console.log("UNIT DRAGEND: (" + this.unitGroup.cx() + "," + this.unitGroup.cy() + ") => (" + row + "," + col + ")");
+
+	this.snapTo(destinationHex);
 }

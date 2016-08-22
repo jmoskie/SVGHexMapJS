@@ -15,7 +15,7 @@ function Map (canvasId, rows, cols, type, height=75 * rows, width=59 * cols + 25
     // only make the map draggable if it can't be shown in its viewbox
     if(height < boxHeight || width < boxWidth) {
 		dragConstraints = {minX: -boxWidth/2, minY: -boxHeight/2, maxX: boxWidth, maxY: boxHeight};
-		this.mapGroup.draggable(dragConstraints).on('dragmove', this.dragmove).on('dragend', this.dragend);
+		this.mapGroup.draggable(dragConstraints).on("dragmove", this.dragmove).on("dragend", this.dragend);
     }
 
     switch(type) {
@@ -33,7 +33,7 @@ function Map (canvasId, rows, cols, type, height=75 * rows, width=59 * cols + 25
 
     // add some units!
 	this.addUnit("Ghost", "haunting", 1, 0);
-	this.addUnit("Orcy", "imp-laugh", Math.floor(Math.random() * rows), Math.floor(Math.random() * cols));
+	this.addUnit("Impy", "imp-laugh", Math.floor(Math.random() * rows), Math.floor(Math.random() * cols));
 	this.addUnit("BarbaryAnne", "barbarian", Math.floor(Math.random() * rows), Math.floor(Math.random() * cols));
 
 	// TODO: don't forget this, it's handy: map.mapGroup.select(".selectedHex").fill("#00FF00")
@@ -47,7 +47,7 @@ Map.prototype.getSelectedHexes = function() {
 
 // ==================== unit-related functions ====================
 Map.prototype.addUnit = function(name, image, row, col) {
-	return this.units.push(new Unit(name, image, this.hexMap[row][col], this.mapGroup));
+	return this.units.push(new Unit(name, image, this.hexMap[row][col], this));
 }
 
 // ==================== event handlers ====================
